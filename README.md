@@ -1,3 +1,5 @@
+Please use the version from [https://github.com/amin-nejat/CELL_ID](https://github.com/amin-nejat/CELL_ID).
+
 # NeuroPAL_ID
 Labeling *C. elegans* Neurons from NeuroPAL Images
 
