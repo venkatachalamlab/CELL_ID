@@ -35,7 +35,7 @@ image.data = permute(first_frame, [2 1 3 4]);
 image.pixels = [vlab_meta.shape_x, vlab_meta.shape_y, vlab_meta.shape_z];
 image.scale = [vlab_meta.xy_microns, ...
     vlab_meta.xy_microns, ...
-    vlab_meta.z_microns] * 1e-6;
+    vlab_meta.z_microns];
 
 image.channels = {'red', 'green', 'blue'};
 image.colors(1,:) = [1,0,0];
@@ -47,4 +47,19 @@ image.dicChannel = nan;
 % Initialize the image excitation/emission information.
 image.lasers = nan(3,1);
 image.emissions = nan(3,1);
+
+%write metadata
+hashtable = java.util.Hashtable;
+fNames = fieldnames(vlab_meta);
+
+for k=1:length(fNames) 
+        hashtable.put(fNames{k}, vlab_meta.(fNames{k}));
+end
+
+keys = arrayfun(@char, hashtable.keySet.toArray, 'UniformOutput', false);
+values = cellfun(@(x) hashtable.get(x), keys, 'UniformOutput', false);
+
+metadata.keys = keys;
+metadata.values = values;
+metadata.hashtable = hashtable;
 
