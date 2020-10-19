@@ -77,8 +77,10 @@ classdef NeuroPALImage
                         NeuroPALImage.convertAny(file);
                     case {'.ims'} % Imaris format
                         NeuroPALImage.convertAny(file);
-                    case {'.tif','.tiff','.h5'} % TIFF format
+                    case {'.tif','.tiff'} % TIFF format
                         NeuroPALImage.convertAny(file);
+                    case {'.h5'} % Vlab format
+                        NeuroPALImage.convertAny(file);   
                     otherwise % Unknown format
                         error('Unknown image format: "%s"', file);
                 end
